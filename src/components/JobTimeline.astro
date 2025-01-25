@@ -1,0 +1,30 @@
+---
+import JobCard from "./JobCard.astro";
+
+interface Job {
+    date: string; // O el tipo de dato que corresponda
+    title: string;
+    empresa: string;
+    description: string;
+}
+const JOBS: Job[] = [
+    {
+        date: "2023",
+        title: "Data Analyst and Software Developer",
+        empresa:"Futura -Ec",
+        description:
+            "Encargado de la migración de base de datos antigua, corrigiendo errores y duplicados en las tablas. Generacion de scripts de migración en Python con Psycopg para transferir los datos a una nueva estructura en PostgreSQL. Análisis y corrección de datos. Generación y ejecución de scripts de migración. Validación y documentación del proceso.",
+    },
+    {
+        date: "2023-2024",
+        title: "Software Developer",
+        empresa:"Universidad de Cuenca",
+        description:
+            "Participación en diversos proyectos universitarios enfocados en  desarrollo de software. Estos proyectos me permitieron aplicar conceptos teóricos en soluciones prácticas y fortalecer mi capacidad de resolución de problemas.",
+    },
+];
+---
+
+<ol class="relative border-s border-gray-200">
+    {JOBS.map((job) => <JobCard job={job} />)}
+</ol>
