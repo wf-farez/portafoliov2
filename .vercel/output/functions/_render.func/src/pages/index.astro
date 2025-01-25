@@ -1,0 +1,232 @@
+---
+import Footer from "../components/Footer.astro";
+import JobTimeline from "../components/JobTimeline.astro";
+import Navbar from "../components/Navbar.astro";
+import Project from "../components/Project.astro";
+import Skill from "../components/Skill.astro";
+import Layout from "../layouts/Layout.astro";
+
+interface Skill {
+    name: string;
+    iconUrl: string;
+}
+
+interface Project {
+    title: string;
+    description: string;
+    urlImg: string;
+    link: string;
+    usedSkills: { name: string; iconUrl: string }[]; // Habilidades usadas en el proyecto
+}
+
+
+const SKILLS: Skill[] = [
+    {
+        name: "JavaScript",
+        iconUrl: "/icons/javascript.png",
+    },
+    {
+        name: "TypeScript",
+        iconUrl: "/icons/typescript.png",
+    },
+    {
+        name: "TailwindCSS",
+        iconUrl: "/icons/tailwindcss.png",
+    },
+    {
+        name: "Angular",
+        iconUrl: "/icons/angular.png",
+    },
+    {
+        name: "HTML5",
+        iconUrl: "/icons/html.svg",
+    },
+    {
+        name: "CSS3",
+        iconUrl: "/icons/css.svg",
+    },
+    {
+        name: "PostgreSQL",
+        iconUrl: "/icons/postgresql.png",
+    },
+    {
+        name: "Git",
+        iconUrl: "/icons/git.png",
+    },
+];
+
+const PROJECTS: Project[] = [
+    {
+        title: "Frontend: Solución de Software para transporte de pasajeros",
+        urlImg: "/project1.png",
+        description:
+            "Sistema de administrador para ingreso de información de servicio de transporte intercantonal e interprovincial en Ecuador. Desarrollado en Angular",
+        link: "https://github.com/wf-farez/frontend_transporte",
+        usedSkills: [
+            {
+                name: "Angular",
+                iconUrl: "/icons/angular.png",
+            },
+           
+        ],
+    },
+    {
+        title: "Backend: Solución de Software para transporte de pasajeros",
+        urlImg: "/project1.png",
+        description:
+            "Backend Sistema de administrador para ingreso de informacion de servicio de transporte intercantonal e interprovincial en Ecuador. Desarrollo en Spring. Base de datos Postgres y Firebase",
+        link: "https://github.com/wf-farez/backend_transporte",
+        usedSkills: [
+            {
+                name: "Spring",
+                iconUrl: "/icons/spring.png",
+            },
+            {
+                name: "Firebase",
+                iconUrl: "/icons/firebase.png",
+            },
+            {
+                name: "Postgres",
+                iconUrl: "/icons/postgresql.png",
+            },
+        ],
+    },
+    
+    
+];
+---
+
+<Layout title="Walter Farez | FullStack Web Developer">
+    <header
+        id="inicio"
+        class="h-dvh bg-[url('/fondo1.jpg')] bg-cover bg-center flex flex-col justify-between"
+    >
+        <Navbar />
+        <div class="flex flex-col items-center gap-1">
+
+            <h2 class="text-2xl md:text-3xl lg:text-4xl text-center">
+                Transformando ideas en codigo
+                            </h2>
+
+            <div class="float-center lg:float-end ">
+                <img
+                  class="mb-20 mt-20"
+                  src="/perfil.png"
+                  alt=""
+                  width="200"
+              height="200"
+                />
+            </div>
+
+            <h1 class="text-2xl md:text-3xl lg:text-4xl text-center">
+                Hola, soy Walter, un apasionado desarrollador web.
+            </h1>
+
+            
+        </div>
+
+        <div>
+
+        </div>
+        <!-- <div class="flex justify-center mb-10">
+            <a href="#about" class="p-4 bg-custom-purple_darker rounded-full">
+                <img
+                    src="/icons/down-arrow.svg"
+                    class="size-6 animate-bounce motion-reduce:animate-none"
+                    alt="Arrow"
+                />
+            </a>
+        </div> -->
+
+
+    </header>
+    <main>
+        <section
+            id="about"
+            class="bg-custom-purple_darker flex flex-col md:flex-row gap-4 md:gap-12 p-4"
+        >
+            <article class="flex flex-col gap-2">
+                <h3 class="text-center text-lg md:text-xl text-white font-bold">
+                    Habilidades Profesionales
+                </h3>
+                <div class="flex justify-center -mt-2">
+                    <span class="text-center text-gray-300"
+                        ></span
+                    >
+                </div>
+                <div class="flex justify-center gap-2 flex-wrap">
+                    {SKILLS.map((skill) => <Skill skill={skill} />)}
+                </div>
+                <div class="flex flex-col gap-1 text-gray-300 p-2">
+                    <p>
+                        Mi experiencia como desarrollador web abarca JavaScript y TypeScript para la creación de aplicaciones dinámicas y escalables. Utilizo TailwindCSS para implementar diseños modernos y responsivos de manera eficiente. En términos de desarrollo frontend, tengo un manejo sólido de HTML5 y CSS3. Además, cuento con experiencia en la integración y gestión de bases de datos utilizando PostgreSQL y MySQL, y el control de versiones a través de Git para un flujo de trabajo colaborativo y organizado.
+                   
+                       
+                    
+                        
+                    </p>
+                </div>
+            </article>
+            <article>
+                <h3
+                    class="text-center text-lg md:text-xl text-white font-bold mb-2"
+                >
+                    Experiencia
+                </h3>
+                <JobTimeline />
+            </article>
+        </section>
+        <section
+            id="projects"
+            class="max-w-screen-lg mx-auto grid place-content-center gap-12"
+        >
+            <div class="flex justify-center mt-8">
+                <h3
+                    class="w-fit border-b border-b-custom-purple text-xl md:text-2xl lg:text-4xl font-semibold"
+                >
+                    Proyectos
+                </h3>
+            </div>
+            <div class="w-full grid place-content-center gap-16">
+                {
+                    PROJECTS.map((project, index) => (
+                        <Project project={project} index={index} />
+                    ))
+                }
+            </div>
+        </section>
+
+
+
+        <section
+            id="contact"
+            class="mt-40 relative h-[610px] xs:h-[590px] sl:h-[540px] sm:h-[560px] lg:h-[610px]"
+        >
+            <div
+                class=" bg-white shadow-2xl py-4 lg:py-8 px-4 mx-auto max-w-screen-md"
+            >
+                <h2
+                    class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
+                >
+                    Contactame!
+                </h2>
+                <p
+                    class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl"
+                >
+                    Si tienes alguna pregunta o un proyecto no dudes en comunicarte.
+
+                    <a href="mailto:fabian.fp95@gmail.com"
+                target="_blank"
+                class="mt-20 mb-8 lg:mb-16 font-light text-center text-black  sm:text-xl"
+                >fabian.fp95@gmail.com</a>
+              
+                </p>
+    
+
+                
+            </div>
+        </section>
+
+    </main>
+    <Footer />
+</Layout>
